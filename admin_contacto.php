@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 
-// Proteger la vista: solo usuarios logueados (y admin si existe la función)
+
 if (!isLoggedIn()) {
     header('Location: login.php');
     exit;
@@ -16,7 +16,7 @@ if (function_exists('isAdmin') && !isAdmin()) {
     exit;
 }
 
-// Filtro por motivo (opcional)
+
 $motivoFiltro = $_GET['motivo'] ?? '';
 
 $motivos = [
@@ -34,7 +34,7 @@ function labelMotivo($codigo, $motivos)
     return $motivos[$codigo] ?? $codigo;
 }
 
-// Construir query
+
 $sql = "SELECT * FROM mensajes_contacto";
 $params = [];
 
@@ -58,7 +58,7 @@ $mensajes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     Solo se listan con fines de seguimiento interno para el proyecto académico.
   </p>
 
-  <!-- Filtro por motivo -->
+
   <form method="get" class="row g-2 align-items-end mb-4">
     <div class="col-md-4">
       <label class="form-label">Filtrar por motivo</label>

@@ -10,7 +10,8 @@ Instalación:
 1. Copiar la carpeta "legalsmart" dentro de C:\laragon\www\PROYECTO\
 2. Crear la base de datos "legalsmart_db" e importar el archivo SQL incluido (legalsmart_db.sql).
 3. Ajustar la ruta base en los enlaces si es necesario (por defecto: http://localhost/PROYECTO/legalsmart/index.php).
-4. En "pago.php", reemplazar la clave "sk_test_TU_LLAVE_AQUI" por una Secret Key de Stripe en modo prueba.
+4. En "pago.php", reemplazar la clave "sk_test_TU_LLAVE_AQUI" por una Secret Key de Stripe en modo prueba, ya que este proyecto utiliza Stripe en modo **test** para simular pagos.
+
 
 Accesos:
 - Admin:

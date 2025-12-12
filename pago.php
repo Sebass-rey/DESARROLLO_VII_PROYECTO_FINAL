@@ -27,7 +27,7 @@ if (!$tramite) {
 // pasarela de pago
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $stripeSecretKey = 'stripe_secret_key_aqui';
+    $stripeSecretKey = 'sk_test_TU_LLAVE_AQUI';
 
     // Monto en centavos
     $amountCents = (int) round($tramite['monto'] * 100);
