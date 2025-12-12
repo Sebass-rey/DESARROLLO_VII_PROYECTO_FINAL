@@ -24,7 +24,7 @@ if (!$tramite) {
     exit;
 }
 
-// pasarela de pago
+// paserla de pago
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $stripeSecretKey = 'sk_test_TU_LLAVE_AQUI';
@@ -71,8 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($session['url'])) {
         die("No se pudo obtener la URL de pago de Stripe.");
     }
-
-    // Redirigir al Checkout de Stripe
     header("Location: " . $session['url']);
     exit;
 }

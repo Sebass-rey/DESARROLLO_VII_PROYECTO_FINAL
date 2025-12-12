@@ -12,7 +12,6 @@ function navActive(string $file, string $currentPage): string {
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container">
 
-    <!-- Marca con logo -->
     <a class="navbar-brand d-flex align-items-center" href="/PROYECTO/legalsmart/index.php">
       <img
         src="/PROYECTO/legalsmart/assets/img/logo_legalsmart.png"

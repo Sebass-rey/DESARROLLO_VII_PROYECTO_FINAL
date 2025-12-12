@@ -39,7 +39,7 @@ $stmtArch = $pdo->prepare("
 $stmtArch->execute([$idTramite]);
 $archivos = $stmtArch->fetchAll(PDO::FETCH_ASSOC);
 
-// Orden de estados para el "timeline"
+// Orden de estados 
 $ordenEstados = ['recibido','en_revision','en_elaboracion','listo_entrega','completado'];
 $estadoActual = $tramite['estado_actual'];
 

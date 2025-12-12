@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "legalsmart_db";
 $user = "root";
-$pass = ""; // En Laragon normalmente sin clave
+$pass = ""; 
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);

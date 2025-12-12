@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 
-// Traer algunos servicios para mostrar en la home
+//servicos mas solicitados
 $stmt = $pdo->query("SELECT id, nombre, descripcion, precio FROM servicios WHERE activo = 1 LIMIT 3");
 $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

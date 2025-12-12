@@ -30,7 +30,7 @@ $stmtCheck->execute([$idTramite]);
 $pago = $stmtCheck->fetch(PDO::FETCH_ASSOC);
 
 if (!$pago) {
-    // Registrar pago como pagado (con Stripe en modo prueba)
+    // Registrar pago como pagado
     $stmtPago = $pdo->prepare("
         INSERT INTO pagos (id_tramite, monto, metodo, referencia, estado)
         VALUES (?, ?, ?, ?, 'pagado')

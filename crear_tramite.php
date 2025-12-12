@@ -6,7 +6,7 @@ requireLogin();
 
 $idServicio = isset($_GET['id_servicio']) ? (int)$_GET['id_servicio'] : 0;
 
-// Cargar servicio (ahora incluye detalle + documentos_json)
+// Cargar servicio 
 $stmt = $pdo->prepare("SELECT * FROM servicios WHERE id = ? AND activo = 1");
 $stmt->execute([$idServicio]);
 $servicio = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -19,7 +19,7 @@ if (!$servicio) {
     exit;
 }
 
-// Lista de documentos requeridos (desde la BD)
+// Lista de documentos requeridos 
 $documentosReq = [];
 if (!empty($servicio['documentos_json'])) {
     $tmp = json_decode($servicio['documentos_json'], true);
@@ -36,8 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "Por favor describe brevemente tu caso o necesidad.";
     }
 
-    // Validar uploads según documentos requeridos
-    // Si hay documentosReq, cada uno es requerido (si quieres alguno opcional, me lo dices y lo marcamos)
+    // Validacion uploads según documentos requeridos
     if (!empty($documentosReq)) {
         for ($i = 0; $i < count($documentosReq); $i++) {
             if (empty($_FILES['docs']['name'][$i])) {
@@ -74,9 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
         $stmtHist->execute([$idTramite]);
 
-        // Guardar archivos (uno por documento requerido)
+        // Guardar archivos
         if (!empty($documentosReq)) {
-            // Asegurar carpeta
             $uploadsDir = __DIR__ . '/uploads/';
             if (!is_dir($uploadsDir)) {
                 @mkdir($uploadsDir, 0777, true);
@@ -90,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $error          = $_FILES['docs']['error'][$i];
 
                 if ($error !== UPLOAD_ERR_OK) {
-                    // Si falla, no rompe todo el trámite, pero lo registra como error
                     $errores[] = "No se pudo subir el archivo: " . $documentosReq[$i];
                     continue;
                 }
@@ -120,11 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Si hubo errores de upload, los mostramos (sin cancelar el trámite)
         if (!empty($errores)) {
-            // NO redirige a pago hasta que el usuario vea qué falló
+
         } else {
-            // Ir a pantalla de pago
             header("Location: pago.php?id_tramite=" . $idTramite);
             exit;
         }
